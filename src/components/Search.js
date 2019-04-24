@@ -7,18 +7,38 @@ const ACCESS_KEY = `${process.env.REACT_APP_IMAGE_ACCESS_KEY}`
 export default class Search extends Component {
     state = {
         searchQuery: "",
-        searchResults: []
+        currentResult: [],
+        allResults: []
+
     }
 
     handleChange = (e) => {
-        this.setState({searchQuery: e.target.value})
+        this.setState({ searchQuery: e.target.value })
     }
 
     handleSubmit = async (e) => {
         e.preventDefault()
-        const response = await axios.get(`https://api.unsplash.com/search/photos/?client_id=${ACCESS_KEY}&query=${this.state.searchQuery}}`)
-        // console.log(response)
-        this.setState({searchResults: response.data.results})
+
+        const urls = []
+        for (let i = 1; i < 6; i++) {
+            urls.push(`https://api.unsplash.com/search/photos/?client_id=${ACCESS_KEY}&page=${i}&orientation=landscape&query=${this.state.searchQuery}`)
+        }
+        const allRequests = await urls.map((url) => axios.get(url))
+        // console.log(allRequests)
+
+        Promise.all(allRequests)
+            .then(responses => {
+                const processedResponses = []
+                responses.map((response) => {
+                    processedResponses.push(response)
+                    this.setState({ 
+                        currentResult: processedResponses[0].data.results,
+                        allResults: processedResponses
+                     })
+    
+                })
+                console.log(processedResponses)
+            })
     }
 
     render() {
@@ -31,7 +51,7 @@ export default class Search extends Component {
                     <button type-="submit">Search</button>
                 </form>
 
-                <Results results={this.state.searchResults} />
+                <Results results={this.state.currentResult} />
             </div>
         )
     }
