@@ -8,36 +8,38 @@ export default class Search extends Component {
     state = {
         searchQuery: "",
         currentResult: [],
-        allResults: []
+        remainResults: []
 
     }
 
     handleChange = (e) => {
-        this.setState({ searchQuery: e.target.value })
+        this.setState({
+            searchQuery: e.target.value,
+            currentResult: [],
+            remainResults: []
+        })
     }
 
-    handleSubmit = async (e) => {
+    handleSubmit = (e) => {
         e.preventDefault()
 
         const urls = []
         for (let i = 1; i < 6; i++) {
             urls.push(`https://api.unsplash.com/search/photos/?client_id=${ACCESS_KEY}&page=${i}&orientation=landscape&query=${this.state.searchQuery}`)
         }
-        const allRequests = await urls.map((url) => axios.get(url))
-        // console.log(allRequests)
+        const allResponses = urls.map(async url => await axios.get(url))
 
-        Promise.all(allRequests)
+        Promise.all(allResponses)
             .then(responses => {
                 const processedResponses = []
-                responses.map((response) => {
+                responses.map(response => {
                     processedResponses.push(response)
-                    this.setState({ 
-                        currentResult: processedResponses[0].data.results,
-                        allResults: processedResponses
-                     })
-    
+                    return true
                 })
-                console.log(processedResponses)
+                this.setState({
+                    currentResult: processedResponses[0].data.results,
+                    remainResults: processedResponses
+                })
             })
     }
 
@@ -51,7 +53,11 @@ export default class Search extends Component {
                     <button type-="submit">Search</button>
                 </form>
 
-                <Results results={this.state.currentResult} />
+                {this.state.currentResult.length !== 0 ?
+                    <Results
+                        currentResult={this.state.currentResult}
+                        remainResults={this.state.remainResults}
+                    /> : null}
             </div>
         )
     }
