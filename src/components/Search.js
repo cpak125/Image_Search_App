@@ -8,7 +8,7 @@ export default class Search extends Component {
     state = {
         searchQuery: "",
         currentResult: [],
-        remainResults: []
+        allResults: []
 
     }
 
@@ -16,7 +16,7 @@ export default class Search extends Component {
         this.setState({
             searchQuery: e.target.value,
             currentResult: [],
-            remainResults: []
+            allResults: []
         })
     }
 
@@ -29,18 +29,19 @@ export default class Search extends Component {
         }
         const allResponses = urls.map(async url => await axios.get(url))
 
-        Promise.all(allResponses)
-            .then(responses => {
-                const processedResponses = []
-                responses.map(response => {
-                    processedResponses.push(response)
-                    return true
-                })
-                this.setState({
-                    currentResult: processedResponses[0].data.results,
-                    remainResults: processedResponses
-                })
+        // wait for all the promises to resolve
+       Promise.all(allResponses)    
+        .then(responses => {
+            const processedResponses = []
+            responses.map(response => {
+                processedResponses.push(response)
+                return true
             })
+            this.setState({
+                currentResult: processedResponses[0].data.results,
+                allResults: processedResponses
+            })
+        })
     }
 
     render() {
@@ -56,7 +57,7 @@ export default class Search extends Component {
                 {this.state.currentResult.length !== 0 ?
                     <Results
                         currentResult={this.state.currentResult}
-                        remainResults={this.state.remainResults}
+                        allResults={this.state.allResults}
                     /> : null}
             </div>
         )

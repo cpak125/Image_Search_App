@@ -27,28 +27,28 @@ export default class Results extends Component {
         })
         break;
       case 2:
-        images = this.props.remainResults[1].data.results.map((img, i) => {
+        images = this.props.allResults[1].data.results.map((img, i) => {
           return (
             <img key={i} src={img.urls.small} alt="search result" />
           )
         })
         break;
       case 3:
-      images = this.props.remainResults[2].data.results.map((img, i) => {
+      images = this.props.allResults[2].data.results.map((img, i) => {
         return (
           <img key={i} src={img.urls.small} alt="search result" />
         )
       })
       break;
       case 4:
-      images = this.props.remainResults[3].data.results.map((img, i) => {
+      images = this.props.allResults[3].data.results.map((img, i) => {
         return (
           <img key={i} src={img.urls.small} alt="search result" />
         )
       })
       break;
       case 5:
-      images = this.props.remainResults[4].data.results.map((img, i) => {
+      images = this.props.allResults[4].data.results.map((img, i) => {
         return (
           <img key={i} src={img.urls.small} alt="search result" />
         )
