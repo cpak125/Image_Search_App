@@ -2,7 +2,7 @@
 
 Developed a simple image search app. This web app allows users to search images based off a keyword. After a user enters a search, a total of 100 images spread across 5 pages are returned. All images and its related information are pulled from Unsplash's Image API.
 
-![alt text](https://github.com/cpak125/Image_Search_App/tree/master/img)
+![alt text](https://github.com/cpak125/Image_Search_App/blob/master/img/screenshot.png)
 
 ## Deployed App
 https://cpak-image-search-app.herokuapp.com/
