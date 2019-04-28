@@ -46,7 +46,7 @@ export default class Search extends Component {
 
         const urls = []
         for (let i = 1; i < 6; i++) {
-            urls.push(`https://api.unsplash.com/search/photos/?client_id=${ACCESS_KEY}&page=${i}&orientation=landscape&query=${this.state.searchQuery}`)
+            urls.push(`https://api.unsplash.com/search/photos/?client_id=${ACCESS_KEY}&per_page=20&page=${i}&orientation=landscape&query=${this.state.searchQuery}`)
         }
         const allResponses = urls.map(async url => await axios.get(url))
 
