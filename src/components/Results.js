@@ -70,48 +70,48 @@ export default class Results extends Component {
       case 2:
         images = this.props.allResults[1].data.results.map((img, i) => {
           return (
-            <div key={i} >
+            <StyledResult key={i} >
               <a href={img.user.links.html} alt="link to unsplash" target="_blank" rel="noopener noreferrer">
                 <StyledImage src={img.urls.small} alt="search result" />
               </a>
               <p>Photo by: {img.user.username}</p>
-            </div>
+            </StyledResult>
           )
         })
         break;
       case 3:
         images = this.props.allResults[2].data.results.map((img, i) => {
           return (
-            <div key={i} >
+            <StyledResult key={i} >
               <a href={img.user.links.html} alt="link to unsplash" target="_blank" rel="noopener noreferrer">
                 <StyledImage src={img.urls.small} alt="search result" />
               </a>
               <p>Photo by: {img.user.username}</p>
-            </div>
+            </StyledResult>
           )
         })
         break;
       case 4:
         images = this.props.allResults[3].data.results.map((img, i) => {
           return (
-            <div key={i} >
+            <StyledResult key={i} >
               <a href={img.user.links.html} alt="link to unsplash" target="_blank" rel="noopener noreferrer">
                 <StyledImage src={img.urls.small} alt="search result" />
               </a>
               <p>Photo by: {img.user.username}</p>
-            </div>
+            </StyledResult>
           )
         })
         break;
       case 5:
         images = this.props.allResults[4].data.results.map((img, i) => {
           return (
-            <div key={i} >
+            <StyledResult key={i} >
               <a href={img.user.links.html} alt="link to unsplash" target="_blank" rel="noopener noreferrer">
                 <StyledImage src={img.urls.small} alt="search result" />
               </a>
               <p>Photo by: {img.user.username}</p>
-            </div>
+            </StyledResult>
           )
         })
         break;
