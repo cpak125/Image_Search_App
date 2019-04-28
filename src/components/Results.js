@@ -14,9 +14,10 @@ const PagesContainer = styled.div`
 text-align: center;
 margin-top: 20px;
 margin-bottom: 20px;
+font-size: 16px;
 `
 const StyledButton = styled.button`
-font-size: 12px;
+font-size: 16px;
 border-radius: 4px;
 background-color: #f1f1f1;
 margin-left: 2px;
