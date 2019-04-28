@@ -1,9 +1,30 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Results from './Results';
+import Results from './Results'
+import styled from 'styled-components'
 
 const ACCESS_KEY = `${process.env.REACT_APP_IMAGE_ACCESS_KEY}`
 
+const StyledInput = styled.input`
+line-height: 32px;
+border-radius: 2px;
+width: 50%;
+`
+
+const StyledButton = styled.button`
+font-size: 18px;
+border-radius: 4px;
+margin-left: 10px;
+`
+
+const StyledForm = styled.form`
+text-align: center;
+margin-top: 20px;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+position: relative;
+`
 export default class Search extends Component {
     state = {
         searchQuery: "",
@@ -47,12 +68,12 @@ export default class Search extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.searchQuery}
+                <StyledForm onSubmit={this.handleSubmit}>
+                    <StyledInput type="text" value={this.state.searchQuery}
                         placeholder="Search for Images..." onChange={this.handleChange} >
-                    </input>
-                    <button type-="submit">Search</button>
-                </form>
+                    </StyledInput>
+                    <StyledButton type-="submit">Search</StyledButton>
+                </StyledForm>
 
                 {this.state.currentResult.length !== 0 ?
                     <Results

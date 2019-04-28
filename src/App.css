@@ -1,3 +1,10 @@
-body {
+body, html {
+  height:100%;
   background-image: linear-gradient(to right, #F1F2B5, #135058);
+  background-size: cover;
+  background-position: center;
+}
+
+input[type="text"]{
+  font-size: 24px;
 }
