@@ -1,6 +1,9 @@
 {
   "name": "image_search_app",
   "version": "0.1.0",
+  "engines": {
+    "node": "18.0.0"
+  },
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",
